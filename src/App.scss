@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+}
+
+#root {
+  $angle: 0deg;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    height: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dotted green;
+    padding: 16px;
+    border-radius: 50%;
+    position: relative;
+
+    .tick {
+      background-color: transparent;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      transform: rotate(var(--angle));
+      transition: 300ms ease all;
+      display: flex;
+      justify-content: center;
+      .secondtick {
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        margin: 8px;
+        background-color: white;
+        display: flex;
+      }
+    }
+    .time {
+      color: green;
+      font-size: 80px;
+      text-transform: uppercase;
+    }
+  }
+}

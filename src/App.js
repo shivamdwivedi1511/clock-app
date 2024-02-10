@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.scss";
 
 function App() {
+  const [timestamp, setTimestamp] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTimestamp(new Date()), 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    // console.log(timestamp.getSeconds());
+    const root = document.documentElement;
+        root?.style.setProperty(
+            "--angle",
+            `${timestamp.getSeconds()*6}deg`
+        );
+  }, [timestamp])
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="container">
+        <div className="tick">
+          <div className="secondtick"></div>
+        </div>
+        <p className="time">{timestamp.toLocaleTimeString({}, { hourCycle: "h12" })}</p>
+      </div>
     </div>
   );
 }
